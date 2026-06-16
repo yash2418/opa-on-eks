@@ -1,14 +1,14 @@
 module "vpc" {
   source = "./modules/vpc"
 
-  project_name        = var.project_name
-  vpc_cidr            = var.vpc_cidr
-  public_subnet_cidr  = var.public_subnet_cidr
-  private_subnet_cidr = var.private_subnet_cidr
-  aws_region          = var.aws_region
-  availability_zone   = var.availability_zone
-  environment         = var.environment
-  tags                = var.common_tags
+  project_name         = var.project_name
+  vpc_cidr             = var.vpc_cidr
+  public_subnet_cidrs  = var.public_subnet_cidrs
+  private_subnet_cidrs = var.private_subnet_cidrs
+  aws_region           = var.aws_region
+  availability_zones   = var.availability_zones
+  environment          = var.environment
+  tags                 = var.common_tags
 }
 
 module "eks" {
@@ -19,8 +19,8 @@ module "eks" {
   environment        = var.environment
   kubernetes_version = var.kubernetes_version
   vpc_id             = module.vpc.vpc_id
-  subnet_ids         = [module.vpc.public_subnet_id]
-  private_subnet_ids = [module.vpc.private_subnet_id]
+  subnet_ids         = module.vpc.public_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids
 
   # Node Group User-Configurable Parameters
   instance_type           = var.instance_type

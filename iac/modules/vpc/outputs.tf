@@ -8,14 +8,24 @@ output "vpc_cidr" {
   value       = aws_vpc.main.cidr_block
 }
 
+output "public_subnet_ids" {
+  description = "List of public subnet IDs"
+  value       = [for subnet in aws_subnet.public : subnet.id]
+}
+
+output "private_subnet_ids" {
+  description = "List of private subnet IDs"
+  value       = [for subnet in aws_subnet.private : subnet.id]
+}
+
 output "public_subnet_id" {
-  description = "Public subnet ID"
-  value       = aws_subnet.public.id
+  description = "First public subnet ID (deprecated, use public_subnet_ids)"
+  value       = aws_subnet.public["0"].id
 }
 
 output "private_subnet_id" {
-  description = "Private subnet ID"
-  value       = aws_subnet.private.id
+  description = "First private subnet ID (deprecated, use private_subnet_ids)"
+  value       = aws_subnet.private["0"].id
 }
 
 output "nat_gateway_id" {

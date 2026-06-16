@@ -13,15 +13,16 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
+  for_each                = { for i, az in var.availability_zones : i => az }
   vpc_id                  = aws_vpc.main.id
-  cidr_block              = var.public_subnet_cidr
-  availability_zone       = var.availability_zone
+  cidr_block              = var.public_subnet_cidrs[each.key]
+  availability_zone       = each.value
   map_public_ip_on_launch = true
 
   tags = merge(
     var.tags,
     {
-      Name        = "${var.project_name}-public-subnet"
+      Name        = "${var.project_name}-public-subnet-${each.key + 1}"
       Environment = var.environment
       Type        = "Public"
     }
@@ -29,14 +30,15 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
+  for_each          = { for i, az in var.availability_zones : i => az }
   vpc_id            = aws_vpc.main.id
-  cidr_block        = var.private_subnet_cidr
-  availability_zone = var.availability_zone
+  cidr_block        = var.private_subnet_cidrs[each.key]
+  availability_zone = each.value
 
   tags = merge(
     var.tags,
     {
-      Name        = "${var.project_name}-private-subnet"
+      Name        = "${var.project_name}-private-subnet-${each.key + 1}"
       Environment = var.environment
       Type        = "Private"
     }
