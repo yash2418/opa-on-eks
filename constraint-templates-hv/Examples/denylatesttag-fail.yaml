@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-latest-fail
+  namespace: hv-opa-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-latest-fail
+  template:
+    metadata:
+      labels:
+        app: nginx-latest-fail
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest

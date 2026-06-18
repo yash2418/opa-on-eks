@@ -1,0 +1,19 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedStorageClass
+metadata:
+  name: restrict-storageclass
+spec:
+  match:
+    excludedNamespaces:
+      - kube-system
+      - gatekeeper-system
+      - yr-opa-demo
+    kinds:
+      - apiGroups: [""]
+        kinds:
+          - PersistentVolumeClaim
+
+  parameters:
+    allowedStorageClasses:
+      - gp3
+      - efs-sc
