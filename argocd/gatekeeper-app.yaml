@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/yash2418/opa-on-eks
     targetRevision: feature/HV_Opa-Policies
-    path: constraint-templates-hv
+    path: constraint-templates-hv/
 
   destination:
     server: https://kubernetes.default.svc
