@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatekeeper-policies
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/yash2418/opa-on-eks
+    targetRevision: feature/HV_Opa-Policies
+    path: constraint-templates-hv
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
