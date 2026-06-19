@@ -8,7 +8,6 @@ spec:
       - kube-system
       - gatekeeper-system
       - yr-opa-demo
-      - hv-opa-demo
     kinds:
       - apiGroups: [""]
         kinds:
