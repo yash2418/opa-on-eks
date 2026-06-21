@@ -1,0 +1,18 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRegistries
+metadata:
+  name: approved-registries
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds:
+          - Pod
+
+      - apiGroups: ["apps"]
+        kinds:
+          - Deployment
+
+  parameters:
+    registries:
+      - "951734991809.dkr.ecr.ap-south-1.amazonaws.com/"

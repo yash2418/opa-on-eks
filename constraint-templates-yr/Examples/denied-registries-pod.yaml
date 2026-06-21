@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: denied-pod
   namespace: yr-opa-demo
   labels:
-    owner: platform-team
+    owner: yr
 spec:
   containers:
-  - name: nginx
-    image: nginx
+    - name: nginx
+      image: nginx:latest

@@ -1,0 +1,17 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireReadinessProbe
+metadata:
+  name: require-readiness-probe
+spec:
+  match:
+    excludedNamespaces:
+      - kube-system
+      - gatekeeper-system
+      - hv-opa-demo
+
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+
+      - apiGroups: ["apps"]
+        kinds: ["Deployment"]

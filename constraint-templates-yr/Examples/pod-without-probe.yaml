@@ -4,8 +4,8 @@ metadata:
   name: nginx
   namespace: yr-opa-demo
   labels:
-    owner: platform-team
+    owner: yr
 spec:
   containers:
-  - name: nginx
-    image: nginx
+    - name: nginx
+      image: nginx
