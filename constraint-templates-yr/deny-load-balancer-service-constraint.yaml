@@ -1,0 +1,14 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sDenyLoadBalancer
+metadata:
+  name: deny-loadbalancer-services
+spec:
+  match:
+    excludedNamespaces:
+      - kube-system
+      - gatekeeper-system
+      - hv-opa-demo
+
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]

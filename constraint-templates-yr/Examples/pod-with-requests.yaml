@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: valid-pod
+  namespace: yr-opa-demo
+  labels:
+    owner: yr
+spec:
+  containers:
+    - name: nginx
+      image: 951734991809.dkr.ecr.ap-south-1.amazonaws.com/ngnix:latest
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
