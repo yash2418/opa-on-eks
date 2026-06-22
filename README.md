@@ -6,6 +6,9 @@ This repository contains infrastructure and policy enforcement configurations fo
 
 ```
 opa-on-eks/
+├── argocd/                           # Argo CD configuration
+│   ├── *.yaml                        # Argo CD Applications for services and Gatekeeper app
+|
 ├── constraint-templates-hv/          # OPA/Gatekeeper constraint templates set 1
 │   ├── Examples/                     # Example YAML manifests demonstrating policies
 │   ├── *.yaml                        # Constraint templates and constraints

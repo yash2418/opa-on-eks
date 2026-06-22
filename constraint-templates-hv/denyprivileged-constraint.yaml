@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sDenyPrivileged
+metadata:
+  name: deny-privileged-containers
+spec:
+  match:
+    excludedNamespaces:
+      - kube-system
+      - gatekeeper-system
+      - yr-opa-demo
+
+    kinds:
+      - apiGroups: [""]
+        kinds:
+          - Pod

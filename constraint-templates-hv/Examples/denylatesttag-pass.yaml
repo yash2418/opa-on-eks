@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-versioned-pass
+  namespace: hv-opa-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-versioned-pass
+  template:
+    metadata:
+      labels:
+        app: nginx-versioned-pass
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27.5

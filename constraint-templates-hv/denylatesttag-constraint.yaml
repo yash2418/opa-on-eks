@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sDenyLatestTag
+metadata:
+  name: deny-latest-tag
+spec:
+  match:
+    namespaces:
+      - hv-opa-demo
+    kinds:
+      - apiGroups: [""]
+        kinds:
+          - Pod
+      - apiGroups: ["apps"]
+        kinds:
+          - Deployment
